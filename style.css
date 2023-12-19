@@ -1,0 +1,27 @@
+html,
+body {
+  background-image: linear-gradient(
+    to right,
+    rgb(151, 29, 29),
+    rgb(100, 95, 95)
+  );
+  background-size: cover;
+}
+
+#main-display {
+  margin: auto;
+  text-align: center;
+  background-color: rgba(183, 159, 159, 0.516);
+  color: rgb(225, 224, 218);
+  width: 75%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  line-height: 30px;
+}
+
+h1 {
+  line-height: 60px;
+}
+
+#highlight-span {
+  color: rgb(112, 7, 28);
+}
