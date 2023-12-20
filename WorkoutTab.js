@@ -52,7 +52,7 @@ years.forEach((year) => {
 
 function cleanCalenderDays() {
   daysOfMonth = [];
-  tableBody.replaceChildren(...daysOfMonth);
+  tableBody.replaceChildren(daysOfMonth);
 }
 
 function createDaysForCalenderArr(arr, num) {
@@ -67,7 +67,12 @@ function changeMonth() {
   cleanCalenderDays();
   if (dateMonth.value === "Febuary") {
     createDaysForCalenderArr(daysOfMonth, 28);
-  } else if (dateMonth === "April" || dateMonth === "June") {
+  } else if (
+    dateMonth.value === "April" ||
+    dateMonth.value === "June" ||
+    dateMonth.value === "September" ||
+    dateMonth.value === "November"
+  ) {
     createDaysForCalenderArr(daysOfMonth, 30);
   } else {
     createDaysForCalenderArr(daysOfMonth, 31);
@@ -80,4 +85,5 @@ function changeMonth() {
   console.log(dateMonth.value);
 }
 
+document.onload = changeMonth();
 dateMonth.onchange = changeMonth;
