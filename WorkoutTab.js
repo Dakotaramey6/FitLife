@@ -79,6 +79,11 @@ function changeMonth() {
   }
   for (let i = 1; i <= daysOfMonth.length; i++) {
     let days = document.createElement("td");
+    days.id = "date-day";
+    if (i % 5 === 0) {
+      let row = document.createElement("tr");
+      tableBody.appendChild(row);
+    }
     days.innerText = i;
     tableBody.appendChild(days);
   }
