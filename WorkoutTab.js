@@ -1,6 +1,7 @@
 let dateMonth = document.getElementById("date-month");
 let dateYear = document.getElementById("date-year");
 let tableBody = document.getElementById("table-body");
+const table = document.querySelector("#calender-container");
 let currentDate = new Date();
 const currentMonth = currentDate.getUTCMonth();
 const currentYear = currentDate.getUTCFullYear();
@@ -9,6 +10,7 @@ let daysOfMonth = [];
 let maxYear = 2030;
 
 const years = [];
+let days;
 
 let oldYear = currentYear - 2;
 while (maxYear >= oldYear) {
@@ -78,17 +80,30 @@ function changeMonth() {
     createDaysForCalenderArr(daysOfMonth, 31);
   }
   for (let i = 1; i <= daysOfMonth.length; i++) {
-    let days = document.createElement("td");
+    days = document.createElement("td");
     days.id = "date-day";
-    if (i % 5 === 0) {
+    days.className = "disabled-day";
+    if (i % 6 === 1) {
       let row = document.createElement("tr");
       tableBody.appendChild(row);
     }
     days.innerText = i;
     tableBody.appendChild(days);
   }
-  console.log(dateMonth.value);
+}
+
+function activeEventHandlerOnChange() {
+  let allDays = document.querySelectorAll("td");
+  allDays.forEach((el) => {
+    el.onclick = function () {
+      table.classList.toggle("move-left");
+      table.classList.toggle("middle");
+      el.classList.toggle("active-day");
+      console.log(`${el.innerText}`);
+    };
+  });
 }
 
 document.onload = changeMonth();
 dateMonth.onchange = changeMonth;
+dateMonth.onchange = activeEventHandlerOnChange();
