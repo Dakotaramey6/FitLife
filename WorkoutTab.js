@@ -1,3 +1,5 @@
+"use Strict";
+import CalenderDays from "./CalenderDays.js";
 let dateMonth = document.getElementById("date-month");
 let dateYear = document.getElementById("date-year");
 let tableBody = document.getElementById("table-body");
@@ -6,6 +8,7 @@ let currentDate = new Date();
 const currentMonth = currentDate.getUTCMonth();
 const currentYear = currentDate.getUTCFullYear();
 let daysOfMonth = [];
+let dayObj;
 
 let maxYear = 2030;
 
@@ -19,7 +22,7 @@ while (maxYear >= oldYear) {
 }
 
 function createOptions(dateType, arr, docEl, compare) {
-  options = document.createElement("option");
+  let options = document.createElement("option");
   options.text = dateType;
   if (typeof dateType === "string") {
     if (arr.indexOf(dateType) === compare) options.selected = "selected";
@@ -58,7 +61,7 @@ function cleanCalenderDays() {
 }
 
 function createDaysForCalenderArr(arr, num) {
-  i = 1;
+  let i = 1;
   while (i <= num) {
     arr.push(i);
     i++;
@@ -89,6 +92,8 @@ function changeMonth() {
     }
     days.innerText = i;
     tableBody.appendChild(days);
+
+    dayObj = new CalenderDays(i, dateMonth.value);
   }
 }
 
@@ -96,10 +101,9 @@ function activeEventHandlerOnChange() {
   let allDays = document.querySelectorAll("td");
   allDays.forEach((el) => {
     el.onclick = function () {
-      table.classList.toggle("move-left");
-      table.classList.toggle("middle");
+      table.classList.add("move-left");
+      table.classList.remove("middle");
       el.classList.toggle("active-day");
-      console.log(`${el.innerText}`);
     };
   });
 }
